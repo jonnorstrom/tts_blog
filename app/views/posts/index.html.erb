@@ -1,0 +1,10 @@
+<h2>All the blogs</h2>
+
+<ol>
+  <% @posts.each do |post| %>
+    <li><%= post.title %></li>
+    <%= link_to 'Go to post', post %>
+    <%= link_to 'Delete this post', post, {method: 'delete'} %>
+    <%= link_to 'Edit this post', edit_post_path(post) %>
+  <% end %>
+</ol>

@@ -1,0 +1,15 @@
+<h2>One specific user</h2>
+
+<h3><%= @user.username %></h3>
+<p>Date Registered: <%= @user.created_at %></p>
+
+<h3>Here's all the stuff they have written.</h3>
+
+<ol>
+  <% @posts.each do |post| %>
+    <li><%= post.title %> by: <%= post.user.username %></li>
+    <%= link_to 'Go to post', post %>
+    <%= link_to 'Delete this post', post, {method: 'delete'} %>
+    <%= link_to 'Edit this post', edit_post_path(post) %>
+  <% end %>
+</ol>
