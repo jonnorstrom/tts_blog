@@ -15,5 +15,8 @@ Rails.application.routes.draw do
   post  'users' => 'users#create'
   get   'users/:id' => 'users#show', as: 'user'
 
+  get   'login' => 'sessions#new', as: 'new_session'
+  post  'login' => 'sessions#create' 
+
 
 end
