@@ -9,14 +9,16 @@ Rails.application.routes.draw do
   patch     'posts/:id'   => 'posts#update'
   get       'posts/:id/edit' => 'posts#edit', as: 'edit_post'
 
-
   get   'users/new' => 'users#new', as: 'new_user'
   get   'users' => 'users#index', as: 'users'
   post  'users' => 'users#create'
   get   'users/:id' => 'users#show', as: 'user'
 
+  get   'posts/:post_id/comments/new' => 'comments#new', as: 'new_comment'
+  post  'posts/:post_id/comments' => 'comments#create', as: 'post_comments'
+
   get   'login' => 'sessions#new', as: 'new_session'
-  post  'login' => 'sessions#create' 
+  post  'login' => 'sessions#create'
 
 
 end
