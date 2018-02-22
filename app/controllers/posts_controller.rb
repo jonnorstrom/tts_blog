@@ -4,9 +4,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    blog_title = params[:post][:title]
-    blog_body = params[:post][:body]
-    new_post = Post.new(title: blog_title, body: blog_body, user_id: current_user.id)
+    new_post = current_user.posts.new(post_params)
     new_post.save
 
     redirect_to post_path new_post
@@ -26,12 +24,7 @@ class PostsController < ApplicationController
 
   def update
     post = Post.find(params[:id])
-
-    new_blog_title = params[:post][:title]
-    new_blog_body = params[:post][:body]
-
-    post.title = new_blog_title
-    post.body = new_blog_body
+    post.update(post_params)
     post.save
 
     redirect_to post_path post
@@ -41,5 +34,11 @@ class PostsController < ApplicationController
     Post.find(params[:id]).destroy
 
     redirect_to posts_path
+  end
+
+  private
+
+  def post_params
+    params.require(:post).permit(:title, :body)
   end
 end
